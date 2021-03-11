@@ -18,7 +18,7 @@ soup = BS(html, 'html.parser')
 with open('linkedin.html', 'w', encoding='utf-8') as f:
     f.write(html)
 
-for connection in soup.find_all('a', class_="ember-view pv-browsemap-section__member align-items-center"):
+for connection in soup.find_all('a', class_="ember-view pv-browsemap-section__member align-items-center"): # find possible connection
     print(connection['href'])
 
 
