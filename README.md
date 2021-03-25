@@ -14,3 +14,9 @@ To use it (on win10):
 
 4. run scraper.py
 
+Some relevant repos & datasets:
+https://www.kaggle.com/bryanpark/nana-dataset
+https://github.com/kaionwong/ethnicity-ml-prediction/tree/master/data
+https://github.com/Ahalya24/ethinicity_from_name
+https://github.com/d4em0n/nationality-classify/tree/master/datasets
+
