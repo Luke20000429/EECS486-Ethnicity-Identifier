@@ -1,9 +1,5 @@
 import Levenshtein
 import numpy as np
-<<<<<<< HEAD
-countryNum = 2
-countryName = ["ch","us"]
-=======
 
 def readData(nationINFO='nations.txt', nameINFO='db.txt'):
 
@@ -24,46 +20,27 @@ def readData(nationINFO='nations.txt', nameINFO='db.txt'):
 
     return nations, name_pairs
 
->>>>>>> 2f6ce128122ba78f78a83725533319b8bda790a9
 
 def calcStrSimSoc(str1, str2):
     return 1/(1.05-Levenshtein.ratio(str1, str2)) - 1/1.06
 
 
-<<<<<<< HEAD
-def countNN(pairs, smoothingNum = 3):
-=======
-def countNN(pairs, countryNum, smoothingNum = 3):
->>>>>>> 2f6ce128122ba78f78a83725533319b8bda790a9
+def countNN(pairs, countryNum, smoothingNum = 1):
     retDict = dict()
+    numForNation = np.array([smoothingNum * countryNum] * countryNum)
+    popNation = np.array([1] * countryNum)  # temp setting
     for x, nt in pairs:
-        if x not in pairs:
+        if x not in retDict:
             retDict[x] = np.array([smoothingNum] * countryNum)
         retDict[x][nt] += 1
+        numForNation[nt] += 1
     
     for nm in retDict:
-        retDict[nm] = retDict[nm]/sum(retDict[nm])
+        correctedCount = retDict[nm] * popNation / numForNation
+        retDict[nm] = correctedCount / sum(correctedCount)
         
     return retDict
 
-<<<<<<< HEAD
-def genNameBase():
-    pairs = [("alice", 0), ("bob", 0), ("wang", 1), ("zhou", 1)]
-    return countNN(pairs)
-
-def testName(name, nameBase):
-    print(nameBase)
-    if name in nameBase:
-        return nameBase[name]
-    else:
-        ret = np.array([0] * countryNum)
-        for trainName, scores in nameBase.items():
-            ret = ret + calcStrSimSoc(name, trainName) * scores
-        ret = ret / sum(ret)
-        return ret
-
-print(testName("who", genNameBase()))
-=======
 def main():
     # print(nameBase)
     nations, name_pairs = readData()
@@ -71,13 +48,16 @@ def main():
     nameBase = countNN(name_pairs, countryNum)
     print("ready!\n")
     name = input("Type your name here (enter 'q' to quit): ").lower()
-    while name != "q":
+    if name != "q":
         if name in nameBase:
+            print("found in database")
             print(nations[nameBase[name].argmax()])
         else:
             ret = np.array([0] * countryNum)
             for trainName, scores in nameBase.items():
-                ret = ret + calcStrSimSoc(name, trainName) * scores
+                simSco = calcStrSimSoc(name, trainName)
+                if simSco > 2:
+                    ret = ret + simSco * scores
             ret = ret / sum(ret)
             print(nations[ret.argmax()])
 
@@ -85,4 +65,3 @@ def main():
 if __name__ == '__main__':
     main()
     
->>>>>>> 2f6ce128122ba78f78a83725533319b8bda790a9
