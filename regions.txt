@@ -1,18 +1,14 @@
-immigration
-Greek
-European
-CelticEnglish
-EastAsian
-Muslim
-Hispanic
-SouthAsian
-Nordic
-East Asian
-Jewish
-HIspanic
-African
-Others
-Turk
-Oceania
-CentralAsia
-Hispani
+immigration 0
+Greek 1
+European 2
+CelticEnglish 3
+EastAsian 4
+Muslim 5
+Hispanic 6
+SouthAsian 7
+Nordic 8
+Jewish 9
+African 10
+Others 11
+Oceania 12
+CentralAsia 13
