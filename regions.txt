@@ -1,0 +1,18 @@
+immigration
+Greek
+European
+CelticEnglish
+EastAsian
+Muslim
+Hispanic
+SouthAsian
+Nordic
+East Asian
+Jewish
+HIspanic
+African
+Others
+Turk
+Oceania
+CentralAsia
+Hispani
