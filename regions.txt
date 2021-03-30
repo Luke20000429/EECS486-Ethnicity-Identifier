@@ -11,4 +11,3 @@ Jewish 9
 African 10
 Others 11
 Oceania 12
-CentralAsia 13
