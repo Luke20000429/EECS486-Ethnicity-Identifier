@@ -4,7 +4,7 @@ import codecs
 import math
 import numpy as np
 
-def readData(nationINFO='regions.txt', nameINFO='redb.txt'):
+def readData(nationINFO='data/regions.txt', nameINFO='data/redb.txt'):
     
     nations = []
     name_pairs = []
