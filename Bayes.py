@@ -15,7 +15,7 @@ def getPc():
     
     return Pc
 
-def testBayes(Pc, name, regions, name_pairs, c1=1, c2=0.7, c3=1.5):
+def testBayes(Pc, name, regions, name_pairs, c1=0.2, c2=0.7, c3=1.5):
     grams = getGrams(name)
     
     scores = [np.zeros(len(regions)) for i in range(3)] # 3 * num of regions
