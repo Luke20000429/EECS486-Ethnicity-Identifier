@@ -5,11 +5,13 @@ import ctypes
 import sys
 import random
 import math
+import codecs
+import csv
 from ngram import getNgrams, getGrams
 lib = ctypes.cdll.LoadLibrary
 
 class EthnicityPredictor():
-    def __init__(self, _mode=0):
+    def __init__(self, _mode=0, _training_size = None):
         if sys.platform == 'win32':
             self.prepostfix = lib('./prepostfix.dll') #C++ dynamic library to calculate similarity between strings quickly
         elif sys.platform == 'linux':
@@ -17,6 +19,7 @@ class EthnicityPredictor():
 
         self.popNation = np.array([5,1,6,2,20,18,7,20,1,0.2,13,0.1,0.2])  # temp setting
         self.mode = _mode
+        self.training_size = _training_size
         self.sample_factor = 100
 
     def refresh(self, _mode=None):
@@ -36,7 +39,7 @@ class EthnicityPredictor():
         self.namefind = 0
         self.nametest = 0
 
-    def readData(self, sample=None, nationINFO='data/regions.txt', nameINFO='data/redb.txt', testINFO='data/test_set.txt'):
+    def readData(self, nationINFO='data/regions.txt', nameINFO='data/redb.txt', testINFO='data/test_set.txt'):
         
         nations = []
         name_pairs = []
@@ -54,9 +57,10 @@ class EthnicityPredictor():
                 na_na = line[:-1].split(" ")
                 na_na[1] = int(na_na[1])
                 name_pairs.append(tuple(na_na))
-
-        if sample and (sample < len(name_pairs)):
-            name_pairs = random.sample(name_pairs, sample);
+        # for nm in random.sample(name_pairs, 400):
+        #     print(str.upper(nm[0][0])+nm[0][1:])
+        if self.training_size and (self.training_size < len(name_pairs)):
+            name_pairs = random.sample(name_pairs, self.training_size)
 
         with open(testINFO, "r", encoding='utf-8') as f:
             for line in f:
@@ -138,7 +142,8 @@ class EthnicityPredictor():
                 scores = self.nameBase[trainName] # probability of nations
                 simSco = self.prepostfix.prepostsqr(bytes(name, encoding="utf-8"), bytes(trainName, encoding="utf-8")) # calculate similarity score
                 ret = ret + simSco * scores
-        ret = ret * self.notFoundNameRatio # add the factor P(nation | name not found in the database)
+        if self.mode == 3:
+            ret = ret * self.notFoundNameRatio # add the factor P(nation | name not found in the database)
         ret = ret / sum(ret)
 
         if ret.argmax() == target:
@@ -148,7 +153,7 @@ class EthnicityPredictor():
         
         return np.log(ret)
 
-    def testBayes(self, name, target, c1=0.2, c2=0.7, c3=1.5):
+    def testBayes(self, name, target, c1=0.025, c2=0.05, c3=0.25):
         grams = getGrams(name)
     
         scores = [np.zeros(self.countryNum) for i in range(3)] # 3 * num of regions
@@ -172,7 +177,9 @@ class EthnicityPredictor():
             self.bayeshit += 1
         else:
             self.bayesmiss += 1
-        return score+100
+
+        # print(score)
+        return score
         
     def test(self, names, target):
         # method :
@@ -189,17 +196,18 @@ class EthnicityPredictor():
                 # found in database
                 inbase += 1
                 p = p + np.log(self.nameBase[name] + 0.1 / 13)  # 0.1 / countryNum=13 is for smoothing
-            elif self.mode == 0:
+            else:
                 # print("not in database, using prepostffix")
-                p = p + self.testPrePost(name, target)
+                if self.mode == 0 or self.mode == 2 or self.mode == 3:
+                    p = p + self.testPrePost(name, target)
 
-            elif self.mode == 1:
+                if self.mode == 1 or self.mode == 2 or self.mode == 3:
                 # print("not in database, using bayes")
-                p = p + self.testBayes(name, target)
+                    p = p + self.testBayes(name, target)
                 
-            elif self.mode == 2:
+            # elif self.mode == 2:
 
-                pass
+            #     pass
 
         if p.argmax() == target:
             # print("Hit")
@@ -222,6 +230,9 @@ class EthnicityPredictor():
         elif self.mode == 2:
             print("Launch ethnity predictor with combined mode")
             self.countCate()
+        elif self.mode == 3:
+            print("Launch ethnity predictor with combined mode + no-match weight")
+            self.countCate()
 
         print("ready!\n")
 
@@ -241,27 +252,53 @@ class EthnicityPredictor():
             print("accuracy %f\n------------"%(self.hitna[nation_id]/(self.hitna[nation_id]+self.missna[nation_id])))
 
 
-        if self.mode == 0:
+        if self.mode == 0 or self.mode == 2 or self.mode == 3:
             # print("HIT NUM for match nums: " + str(self.hit))
             # print("MISS NUM for match nums: " + str(self.miss))
             print("Hit rate of pure prepostffix: %f"%(self.preposthit/(self.preposthit+self.prepostmiss)))
-        elif self.mode == 1:
+        elif self.mode == 1 or self.mode == 2 or self.mode == 3:
             print("Hit rate of pure bayes: %f"%(self.bayeshit/(self.bayeshit+self.bayesmiss)))
 
-        print("name find rate: %f"%(self.namefind/self.nametest))
-        print("Total accuracy: " + str(sum(self.hitna) / (sum(self.missna) + sum(self.hitna))))
+        print("name find rate: %f" % (self.namefind / self.nametest))
+        total_accuracy = sum(self.hitna) / (sum(self.missna) + sum(self.hitna))
+        print("Total accuracy: " + str(total_accuracy))
 
-        return
+        return total_accuracy
 
         
 if __name__ == '__main__':
-    ep = EthnicityPredictor(_mode=0)
-    # method :
-        # 0 pre/suffix
-        # 1 ngram bayes
-        # 2 combine 0\1
-    
-    ep.Run()
+    mode_list = [0, 1, 2, 3, 4]
+    train_size_list = [10000, 20000, 40000, 80000, 160000, 320000, 640000, 1280000, 1854014]
+
+            # method :
+            # 0 pre/suffix
+            # 1 ngram bayes
+            # 2 combine 0\1
+            # 3 combine 0\1 + not found weight
+            # 4 nothing
+
+    with codecs.open("result_out.csv", 'w', 'utf-8') as csvfile:
+        filednames = ['Pre&Suffix', 'Tri-Bi-Unigram','Combined','Combined + No-match Weight', 'Direct Match']
+        writer = csv.DictWriter(csvfile, fieldnames=filednames)
+        writer.writeheader()
+        
+        repeat = 9
+        for t in train_size_list:
+            acc_dict = dict()
+            for m in mode_list:
+                ep = EthnicityPredictor(_mode=m, _training_size=t)
+        
+
+                accuracy = 0
+                for i in range(repeat):
+                    accuracy += ep.Run()
+
+                accuracy /= repeat
+                acc_dict[filednames[m]] = accuracy
+
+            writer.writerow(acc_dict)
+            repeat -= 1  # the larger the training set, the lower the uncertainty
+
 
 
     
