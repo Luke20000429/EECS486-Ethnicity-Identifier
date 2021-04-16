@@ -2,6 +2,8 @@ import Levenshtein
 import os.path as pt
 import numpy as np
 import ctypes
+import random
+# import matplotlib
 lib = ctypes.cdll.LoadLibrary
 prepostfix = lib('./prepostfix.dll') #C++ dynamic library to calculate similarity between strings quickly
 
@@ -18,14 +20,15 @@ def readData(nationINFO='data/regions.txt', nameINFO='data/redb.txt'):
             nation = line[:-1]
             nations.append(nation)
 
-    with open(nameINFO, 'r', encoding='utf-8') as f: # get training name pairs
+    with open(nameINFO, 'r', encoding='utf-8') as f:  # get training name pairs
+        iter = 0
         for line in f:
             na_na = line[:-1].split(" ")
             na_na[1] = int(na_na[1])
             name_pairs.append(tuple(na_na))
 
+    # return nations, random.sample(name_pairs, k=2000000)
     return nations, name_pairs
-
 # count name and nation pairs
 def countNN(pairs, countryNum, smoothingNum = 1):
     retDict = dict()
@@ -88,7 +91,6 @@ def main():
         if target_count[target] > popNation[target] * 100: # make sure that the test set is in proportion with the population ratio
             continue
         target_count[target] += 1
-
         nameParts = nameParts_and_target[:-1]
 
         p = popNation # initialize the probability for each region as their population
@@ -117,10 +119,11 @@ def main():
                 ret = ret * notFoundNameRatio # add the factor P(nation | name not found in the database)
                 ret = ret / sum(ret)
                 p = p * ret
-                if ret.argmax() == target:
-                    preposthit += 1
-                else:
-                    prepostmiss += 1
+                # sol = ret.argmax()
+                # if sol == target:
+                #     preposthit += 1
+                # else:
+                #     prepostmiss += 1
                 # print(name + ": " + nations[ret.argmax()])
         
         p = p / sum(p)
@@ -136,6 +139,7 @@ def main():
             miss[inbasenum] += 1
             missna[target] += 1
     print(target_count)
+    print("Total test size: " + str(sum(target_count)))
     print(hitna/(hitna + missna))
     print("HIT NUM for match nums: " + str(hit))
     print("MISS NUM for match nums: " + str(miss))
@@ -155,16 +159,16 @@ def main():
     #         else:
     #             ret = np.array([1] * countryNum)
     #             for trainName, scores in nameBase.items():
-    #                 simSco = calcStrSimSoc(name, trainName)
+    #                 simSco = prepostfix.prepostsqr(name, trainName)
     #                 # if simSco > 0.2:
     #                 ret = ret + simSco * scores
     #             ret = ret / sum(ret)
     #             p = p * ret
     #             print(name + ": " + nations[ret.argmax()])
         
-    #     p = p / sum(p)
-    #     print (p)
-    #     print(nameInput + ": " + nations[p.argmax()])
+        # p = p / sum(p)
+        # print (p)
+        # print(nameInput + ": " + nations[p.argmax()])
         
 if __name__ == '__main__':
     main()
