@@ -9,7 +9,7 @@ from ngram import getNgrams, getGrams
 lib = ctypes.cdll.LoadLibrary
 
 class EthnicityPredictor():
-    def __init__(self, _mode=0):
+    def __init__(self, _mode=0, _sf=100):
         if sys.platform == 'win32':
             self.prepostfix = lib('./prepostfix.dll') #C++ dynamic library to calculate similarity between strings quickly
         elif sys.platform == 'linux':
@@ -17,7 +17,7 @@ class EthnicityPredictor():
 
         self.popNation = np.array([5,1,6,2,20,18,7,20,1,0.2,13,0.1,0.2])  # temp setting
         self.mode = _mode
-        self.sample_factor = 100
+        self.sample_factor = _sf
 
     def refresh(self, _mode=None):
         if _mode:
@@ -36,7 +36,7 @@ class EthnicityPredictor():
         self.namefind = 0
         self.nametest = 0
 
-    def readData(self, sample=None, nationINFO='data/regions.txt', nameINFO='data/redb.txt', testINFO='data/test_set.txt'):
+    def readData(self, sample=None, nationINFO='data/regions.txt', nameINFO='data/redb.txt', testINFO='data/olym.txt'):
         
         nations = []
         name_pairs = []
@@ -61,7 +61,7 @@ class EthnicityPredictor():
         with open(testINFO, "r", encoding='utf-8') as f:
             for line in f:
                 na_na = line[:-1].split('#')
-                names = na_na[0]
+                names = na_na[0].lower()
                 nation = int(na_na[1])
                 test_set[nation].append(names)
 
@@ -148,7 +148,7 @@ class EthnicityPredictor():
         
         return np.log(ret)
 
-    def testBayes(self, name, target, c1=0.2, c2=0.7, c3=1.5):
+    def testBayes(self, name, target, c1=0.02, c2=0.05, c3=0.35):
         grams = getGrams(name)
     
         scores = [np.zeros(self.countryNum) for i in range(3)] # 3 * num of regions
@@ -229,8 +229,8 @@ class EthnicityPredictor():
             nation = self.nations[nation_id].split()[0]
             print("predicting %s"%nation)
             # sample names in proportion to the population
-            # names = random.sample(self.test_set[nation_id], int(self.popNation[nation_id] * self.sample_factor))
-            names = self.test_set[nation_id][: int(self.popNation[nation_id] * self.sample_factor)]
+            names = random.sample(self.test_set[nation_id], int(self.popNation[nation_id] * self.sample_factor))
+            # names = self.test_set[nation_id][: int(self.popNation[nation_id] * self.sample_factor)]
             for name in names:
                 parts = name.split()
                 if self.test(parts, nation_id):
@@ -249,14 +249,17 @@ class EthnicityPredictor():
             print("Hit rate of pure bayes: %f"%(self.bayeshit/(self.bayeshit+self.bayesmiss)))
 
         print("name find rate: %f"%(self.namefind/self.nametest))
+        print("Region accuracy: ")
+        print(self.hitna/(self.hitna+self.missna))
         print("Total accuracy: " + str(sum(self.hitna) / (sum(self.missna) + sum(self.hitna))))
 
         return
 
         
 if __name__ == '__main__':
-    ep = EthnicityPredictor(_mode=0)
-    # method :
+    m = input("Choose mode to run\n 0 pre/suffix\n 1 ngram bayes\n:")
+    ep = EthnicityPredictor(_mode=int(m), _sf=100)
+    # mode :
         # 0 pre/suffix
         # 1 ngram bayes
         # 2 combine 0\1
