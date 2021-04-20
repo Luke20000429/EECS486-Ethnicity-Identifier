@@ -268,6 +268,9 @@ class EthnicityPredictor():
 
         
 if __name__ == '__main__':
+
+    # generate performance
+
     mode_list = [0, 1, 2, 3, 4]
     train_size_list = [10000, 20000, 40000, 80000, 160000, 320000, 640000, 1280000, 1854014]
 
