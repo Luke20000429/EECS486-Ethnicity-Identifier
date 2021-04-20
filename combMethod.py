@@ -8,6 +8,7 @@ import math
 import codecs
 import csv
 from ngram import getNgrams, getGrams
+from dataHandler import readData as rd
 lib = ctypes.cdll.LoadLibrary
 
 class EthnicityPredictor():
@@ -39,43 +40,28 @@ class EthnicityPredictor():
         self.namefind = 0
         self.nametest = 0
 
-    def readData(self, nationINFO='data/regions.txt', nameINFO='data/redb.txt', testINFO='data/test_set.txt'):
+    def readData(self, regionINFO='data/regions.txt', nameINFO='data/redb.txt', testINFO='data/test_set.txt'):
+
+        self.nations, self.pairs = rd(regionINFO, nameINFO)
         
-        nations = []
-        name_pairs = []
+        test_set = [[] for _ in self.nations]
+        self.countryNum = len(self.nations)
 
-        with open(nationINFO, 'r', encoding='utf-8') as f:  # get nation names
-            for line in f:
-                nation = line[:-1]
-                nations.append(nation)
-
-        test_set = [[] for _ in nations]
-        self.countryNum = len(nations)
-
-        with open(nameINFO, 'r', encoding='utf-8') as f: # get training name pairs
-            for line in f:
-                na_na = line[:-1].split(" ")
-                na_na[1] = int(na_na[1])
-                name_pairs.append(tuple(na_na))
-        # for nm in random.sample(name_pairs, 400):
-        #     print(str.upper(nm[0][0])+nm[0][1:])
-        if self.training_size and (self.training_size < len(name_pairs)):
-            name_pairs = random.sample(name_pairs, self.training_size)
+        if self.training_size and (self.training_size < len(self.pairs)):
+            self.pairs = random.sample(self.pairs, self.training_size)
 
         with open(testINFO, "r", encoding='utf-8') as f:
             for line in f:
                 na_na = line[:-1].split('#')
-                names = na_na[0].lower()
+                names = na_na[0]
                 nation = int(na_na[1])
                 test_set[nation].append(names)
 
-        self.nations = nations
-        self.pairs = name_pairs
         self.test_set = test_set
 
         self.refresh()
 
-        return nations, name_pairs, test_set
+        return 
 
     def countNN(self, smoothingNum = 1):
         # count name and nation pairs
@@ -240,8 +226,8 @@ class EthnicityPredictor():
             nation = self.nations[nation_id].split()[0]
             print("predicting %s"%nation)
             # sample names in proportion to the population
-            names = random.sample(self.test_set[nation_id], int(self.popNation[nation_id] * self.sample_factor))
-            # names = self.test_set[nation_id][: int(self.popNation[nation_id] * self.sample_factor)]
+            # names = random.sample(self.test_set[nation_id], int(self.popNation[nation_id] * self.sample_factor))
+            names = self.test_set[nation_id][: int(self.popNation[nation_id] * self.sample_factor)]
             for name in names:
                 parts = name.split()
                 if self.test(parts, nation_id):
@@ -259,17 +245,16 @@ class EthnicityPredictor():
         elif self.mode == 1 or self.mode == 2 or self.mode == 3:
             print("Hit rate of pure bayes: %f"%(self.bayeshit/(self.bayeshit+self.bayesmiss)))
 
-        print("name find rate: %f"%(self.namefind/self.nametest))
-        print("Region accuracy: ")
-        print(self.hitna/(self.hitna+self.missna))
-        print("Total accuracy: " + str(sum(self.hitna) / (sum(self.missna) + sum(self.hitna))))
+        print("name find rate: %f" % (self.namefind / self.nametest))
+        total_accuracy = sum(self.hitna) / (sum(self.missna) + sum(self.hitna))
+        print("Total accuracy: " + str(total_accuracy))
 
         return total_accuracy
 
         
 if __name__ == '__main__':
-
-    # generate performance
+    
+    # generate final result
 
     mode_list = [0, 1, 2, 3, 4]
     train_size_list = [10000, 20000, 40000, 80000, 160000, 320000, 640000, 1280000, 1854014]
@@ -292,7 +277,6 @@ if __name__ == '__main__':
             for m in mode_list:
                 ep = EthnicityPredictor(_mode=m, _training_size=t)
         
-
                 accuracy = 0
                 for i in range(repeat):
                     accuracy += ep.Run()
