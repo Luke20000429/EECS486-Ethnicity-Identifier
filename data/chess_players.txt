@@ -1,100 +1,100 @@
-Birhanu LEGESE
-Evans CHEBET
-Lawrence CHERONO
-Mosinet GEREMEW
-Vincent KIPCHUMBA
-Sisay LEMMA
-El Mahjoub DAZZA
-Amos KIPRUTO
-Kaan Kigen ÖZBILEN
-Lelisa DESISA
-Mathew Kipkoech KISORIO
-Leul GEBRESILASE
-Tsedat Abeje AYANA
-Asefa MENGSTU
-Bashir ABDI
-Kelkile GEZAHEGN
-Elisha ROTICH
-Philemon RONO
-Barnabas KIPTUM
-El Hassan EL ABBASSI
-Emmanuel SAINA
-Fikre BEKELE
-Dejene DEBELA
-Dawit WOLDE
-Geoffrey KAMWOROR
-Bedan KAROKI
-Aychew BANTIE
-Reuben Kiprop KIPYEGO
-Kenenisa BEKELE
-Abebe Negewo DEGEFA
-Paul LONYANGATA
-Albert KORIR
-Andualem Belay SHIFERAW
-Reuben KERIO
-Filex Kipchirchir KIPROTICH
-Getaneh MOLLA
-Marius KIMUTAI
-Kinde ATANAW
-Thomas KIPLAGAT
-Mekuant Ayenew GEBRE
-Stephen MOKOKA
-Shifera TAMRU
-Birhan NEBEBEW
-Mule WASIHUN
-Mike KIPTUM
-Daniel KIBET
-Eric KIPTANUI
-Deso GELMISA
-Yuta SHITARA
-Edwin KOECH
-Vincent RONO
-Regasa BEJIGA
-Tadesse ABRAHAM
-Yitayal Atnafu ZERIHUN
-Anthony MARITIM
-Abdi NAGEEYE
-Felix KIMUTAI
-Yuya YOSHIDA
-Koen NAERT
-Mohamed ZIANI
-Herpasa NEGASA
-Michael KUNYUGA
-Morris Munene GACHAGA
-Guye Idemo ADOLA
-Emmanuel NAIBEI
-Justus KIMUTAI
-Gebretsadik ABRAHA
-Bonsa DIDA
-Solomon Kirwa YEGO
-Shura KITATA
-Tsegaye KEBEDE
-Titus EKIRU
-Callum HAWKINS
-Tesfa WOKNETH
-Philemon KACHERAN
-Felix CHEMONGES
-Mo FARAH
-Abera KUMA
-Alemu BEKELE
-Yuma HATTORI
-Asefa MENGISA
-Martin KIPRUGUT KOSGEY
-Silas MWETICH
-Tamirat TOLA
-Berga BIRHANU BEKELE
-Suguru OSAKO
-Yihunilign ADANE
-Naoya SAKUDA
-Belay Asefa BEDADA
-Benson KIPRUTO
-Birhanu TESHOME
-Joel Kemboi KIMURER
-Tesfaye Lencho ANBESA
-Daniel MUINDI
-Benson SEUREI
-Ayele ABSHERO
-Maru TEFERI
-Marius KIPSEREM
-Kengo SUZUKI
-Natsuki TERADA
+ Carlsen Magnus
+ Caruana Fabiano
+ Ding Liren
+ Nepomniachtchi Ian
+ Aronian Levon
+ Grischuk Alexander
+ Giri Anish
+ Mamedyarov Shakhriyar
+ So Wesley
+ Radjabov Teimour
+ Rapport Richard
+ Wang Hao
+ Firouzja Alireza
+ Dominguez Perez Leinier
+ Vachier-Lagrave Maxime
+ Karjakin Sergey
+ Anand Viswanathan
+ Nakamura Hikaru
+ Topalov Veselin
+ Wei Yi
+ Harikrishna Pentala
+ Duda Jan-Krzysztof
+ Vidit Santosh Gujrathi
+ Andreikin Dmitry
+ Adams Michael
+ Vitiugov Nikita
+ Svidler Peter
+ Dubov Daniil
+ Vallejo Pons Francisco
+ Artemiev Vladislav
+ Le Quang Liem
+ Xiong Jeffery
+ Yu Yangyi
+ Tomashevsky Evgeny
+ Bu Xiangzhi
+ Esipenko Andrey
+ Van Foreest Jorden
+ Kryvoruchko Yuriy
+ Amin Bassem
+ Navara David
+ Alekseenko Kirill
+ Sadler Matthew D
+ Wojtaszek Radoslaw
+ Shankland Sam
+ Predke Alexandr
+ Matlakov Maxim
+ Almasi Zoltan
+ Areshchenko Alexander
+ Fedoseev Vladimir
+ Jakovenko Dmitry
+ Korobov Anton
+ Li Chao b
+ Salem A.R. Saleh
+ Sargissian Gabriel
+ Ragger Markus
+ Nyzhnyk Illya
+ Bacrot Etienne
+ Ivanchuk Vasyl
+ Gelfand Boris
+ Maghsoodloo Parham
+ McShane Luke J
+ Anton Guijarro David
+ Berkes Ferenc
+ Robson Ray
+ Eljanov Pavel
+ Bluebaum Matthias
+ Grandelius Nils
+ Jones Gawain C B
+ Wang Yue
+ Cheparinov Ivan
+ Ni Hua
+ Abasov Nijat
+ Guseinov Gadir
+ Kamsky Gata
+ Malakhov Vladimir
+ Leko Peter
+ Melkumyan Hrant
+ Sjugirov Sanan
+ Kasimdzhanov Rustam
+ Shirov Alexei
+ Adhiban B.
+ Sevian Samuel
+ Donchenko Alexander
+ Morozevich Alexander
+ Hou Yifan
+ Howell David W L
+ Lupulescu Constantin
+ Nisipeanu Liviu-Dieter
+ Inarkiev Ernesto
+ Mamedov Rauf
+ Cori Jorge
+ Oparin Grigoriy
+ Rakhmanov Aleksandr
+ Volokitin Andrei
+ Naiditsch Arkadij
+ Sarana Alexey
+ Swiercz Dariusz
+ Najer Evgeniy
+ Grigoryan Karen H.
+ Dreev Aleksey

@@ -20,3 +20,9 @@ https://github.com/kaionwong/ethnicity-ml-prediction/tree/master/data
 https://github.com/Ahalya24/ethinicity_from_name
 https://github.com/d4em0n/nationality-classify/tree/master/datasets
 
+Other data website:
+https://www.goratings.org/en/
+https://ratings.fide.com/top.phtml?list=men
+https://www.worldathletics.org/world-rankings/marathon/men
+https://www.mlb.com/fans/top-100-right-now/
+

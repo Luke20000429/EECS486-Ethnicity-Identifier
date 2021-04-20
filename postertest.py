@@ -97,7 +97,7 @@ class PosterPredicter(EP):
         certainty = max(expp)/sum(expp)
         print(str(round(certainty*100))+'%')
 
-        return
+        return p.argmax()
 
     def Run(self):
 
@@ -123,11 +123,39 @@ class PosterPredicter(EP):
         
         return
 
+
+    def Run_go_chess_test(self):
+
+        self.readData()
+        self.countNN()
+        if self.mode == 0:
+            print("Launch ethnity predictor with pre\suffix classifier mode")
+        elif self.mode == 1:
+            print("Launch ethnity predictor with ngram bayes classifier mode")
+            self.countCate()
+        elif self.mode == 2:
+            print("Launch ethnity predictor with combined mode")
+            self.countCate()
+        elif self.mode == 3:
+            print("Launch ethnity predictor with combined mode + no-match weight")
+            self.countCate()
+
+        print("ready!\n")
+        f_go = open("data/chess_players.txt", 'r')
+        cnt = [0] * self.countryNum
+        for testname in f_go:
+            # testname = input("Please enter a name (enter 'stop' to exit): ")
+            cnt[self.test(str.lower(testname))] += 1
+        
+        f_go.close()
+        print(cnt)
+        return
+
         
 if __name__ == '__main__':
     
     pp = PosterPredicter(_mode=3)
-    pp.Run()        
+    pp.Run()
 
 
 
