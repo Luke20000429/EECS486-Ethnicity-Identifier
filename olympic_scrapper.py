@@ -1,7 +1,6 @@
 import threading
 from bs4 import BeautifulSoup
 import requests
-from urllib.parse import urlparse
 
 
 def scrape_nation_dict():
