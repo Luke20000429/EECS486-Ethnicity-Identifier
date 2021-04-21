@@ -63,6 +63,13 @@ class EthnicityPredictor():
 
         return 
 
+    def corruptData(self):
+
+        
+
+
+        pass
+
     def countNN(self, smoothingNum = 1):
         # count name and nation pairs
         retDict = dict()
@@ -150,7 +157,8 @@ class EthnicityPredictor():
                 voc = len(data[rid].keys())
                 const = math.log(tot + voc)
             
-                scores[N][rid] = self.Pc[rid]
+                # scores[N][rid] = self.Pc[rid]
+                scores[N][rid] = 0
                 for gram in grams[N]:
                     if gram in data[rid].keys():
                         # print(gram)
