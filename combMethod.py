@@ -63,12 +63,16 @@ class EthnicityPredictor():
 
         return 
 
-    def corruptData(self):
+    def corruptData(self, ratio=0.1):
+        ## corrupt our data to test robust
 
-        
+        N = len(self.pairs)
+        toCorrupt = random.sample(range(N), int(N*ratio))
+        self.corruptPairs = self.pairs.copy()
+        for i in toCorrupt:
+            self.corruptPairs[i] = (self.corruptPairs[i][0], random.randint(0,12))
 
-
-        pass
+        return
 
     def countNN(self, smoothingNum = 1):
         # count name and nation pairs
@@ -229,6 +233,8 @@ class EthnicityPredictor():
             self.countCate()
 
         print("ready!\n")
+
+        # start testing
 
         for nation_id in range(self.countryNum):
             nation = self.nations[nation_id].split()[0]
