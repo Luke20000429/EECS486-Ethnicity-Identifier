@@ -1,4 +1,3 @@
-import Levenshtein
 import os.path as pt
 import numpy as np
 import ctypes
@@ -12,6 +11,9 @@ from dataHandler import readData as rd
 lib = ctypes.cdll.LoadLibrary
 
 class EthnicityPredictor():
+    """
+    class of ethnicity predictor
+    """
     def __init__(self, _mode=0, _training_size = None):
         if sys.platform == 'win32':
             self.prepostfix = lib('./prepostfix.dll') #C++ dynamic library to calculate similarity between strings quickly
@@ -24,9 +26,18 @@ class EthnicityPredictor():
         self.sample_factor = 100
 
     def refresh(self, _mode=None):
+
+        # refresh the data and result
+        # reset parameters
+
+        if self.training_size and (self.training_size < len(self.rawpairs)):
+            self.pairs = random.sample(self.rawpairs.copy(), self.training_size)
+        else:
+            self.pairs = self.rawpairs.copy()
+
         if _mode:
             self.mode = _mode
-        self.hit = [0]*10
+        self.hit = [0] * 10
         self.miss = [0] * 10
         self.hitna = np.array([0] * self.countryNum)
         self.missna = np.array([0] * self.countryNum)
@@ -42,13 +53,12 @@ class EthnicityPredictor():
 
     def readData(self, regionINFO='data/regions.txt', nameINFO='data/redb.txt', testINFO='data/test_set.txt'):
 
-        self.nations, self.pairs = rd(regionINFO, nameINFO)
+        # read in train and test data and ethnicity list
+
+        self.nations, self.rawpairs = rd(regionINFO, nameINFO)
         
         test_set = [[] for _ in self.nations]
         self.countryNum = len(self.nations)
-
-        if self.training_size and (self.training_size < len(self.pairs)):
-            self.pairs = random.sample(self.pairs, self.training_size)
 
         with open(testINFO, "r", encoding='utf-8') as f:
             for line in f:
@@ -64,18 +74,20 @@ class EthnicityPredictor():
         return 
 
     def corruptData(self, ratio=0.1):
-        ## corrupt our data to test robust
+
+        # corrupt our data to test robustness
 
         N = len(self.pairs)
         toCorrupt = random.sample(range(N), int(N*ratio))
-        self.corruptPairs = self.pairs.copy()
         for i in toCorrupt:
-            self.corruptPairs[i] = (self.corruptPairs[i][0], random.randint(0,12))
+            self.pairs[i] = (self.pairs[i][0], random.randint(0,12))
 
         return
 
     def countNN(self, smoothingNum = 1):
+
         # count name and nation pairs
+
         retDict = dict()
         numForNation = np.array([smoothingNum] * self.countryNum)
         numSingleNameNation = np.array([0] * self.countryNum)
@@ -118,7 +130,9 @@ class EthnicityPredictor():
         return retDict, setpre, setpost, notFoundNameRatio
 
     def countCate(self):
+
         # get grams data and P_category
+
         self.ngrams = []
         for N in range(3):
             self.ngrams.append(getNgrams(N+1, self.pairs, self.nations))
@@ -126,6 +140,8 @@ class EthnicityPredictor():
         return self.ngrams
 
     def testPrePost(self, name, target):
+
+        # test prefix-suffix model
 
         ret = np.array([len(self.nameBase)/100] * self.countryNum)
         if len(name) >= 2:
@@ -151,6 +167,9 @@ class EthnicityPredictor():
         return np.log(ret)
 
     def testBayes(self, name, target, c1=0.025, c2=0.05, c3=0.25):
+
+        # test naive bayes classifier
+
         grams = getGrams(name)
     
         scores = [np.zeros(self.countryNum) for i in range(3)] # 3 * num of regions
@@ -161,7 +180,6 @@ class EthnicityPredictor():
                 voc = len(data[rid].keys())
                 const = math.log(tot + voc)
             
-                # scores[N][rid] = self.Pc[rid]
                 scores[N][rid] = 0
                 for gram in grams[N]:
                     if gram in data[rid].keys():
@@ -171,20 +189,23 @@ class EthnicityPredictor():
                         scores[N][rid] -= const
 
         score = c1*scores[0] + c2*scores[1] + c3*scores[2]
-        if score.argmax() == target:
+        pscore = score + self.Pc
+        if pscore.argmax() == target:
             self.bayeshit += 1
         else:
             self.bayesmiss += 1
 
-        # print(score)
         return score
         
     def test(self, names, target):
+
+        # predict the ethnicity of input name and compare with target
+
         # method :
         # 0 pre/suffix
         # 1 ngram bayes
         # 2 combine 0\1
-        p = self.Pc
+        p = self.Pc # probability of each category
 
         inbase = 0
         for name in names:
@@ -202,10 +223,6 @@ class EthnicityPredictor():
                 if self.mode == 1 or self.mode == 2 or self.mode == 3:
                 # print("not in database, using bayes")
                     p = p + self.testBayes(name, target)
-                
-            # elif self.mode == 2:
-
-            #     pass
 
         if p.argmax() == target:
             # print("Hit")
@@ -268,12 +285,12 @@ class EthnicityPredictor():
         
 if __name__ == '__main__':
     
-    # generate final result
+    # run full test on different training sizes
 
     mode_list = [0, 1, 2, 3, 4]
     train_size_list = [10000, 20000, 40000, 80000, 160000, 320000, 640000, 1280000, 1854014]
 
-            # method :
+            # mode :
             # 0 pre/suffix
             # 1 ngram bayes
             # 2 combine 0\1
@@ -300,3 +317,4 @@ if __name__ == '__main__':
 
             writer.writerow(acc_dict)
             repeat -= 1  # the larger the training set, the lower the uncertainty
+

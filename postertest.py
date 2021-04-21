@@ -1,4 +1,3 @@
-# import Levenshtein
 import os.path as pt
 import numpy as np
 import ctypes
@@ -15,7 +14,9 @@ printNames = ["USA/Canada/Australia", "Greek", "European","Celtic English","East
 
 class PosterPredicter(EP):
 
-    def testPrePost(self, name):
+    def PrePost(self, name):
+
+        # run prefix-suffix model
     
         ret = np.array([len(self.nameBase)/100] * self.countryNum)
         if len(name) >= 2:
@@ -35,9 +36,11 @@ class PosterPredicter(EP):
 
         return np.log(ret)
 
-    def testBayes(self, name, c1=0.025, c2=0.05, c3=0.25):
+    def Bayes(self, name, c1=0.025, c2=0.05, c3=0.25):
+
+        # Run naive bayes model 
+
         grams = getGrams(name)
-    
         scores = [np.zeros(self.countryNum) for i in range(3)] # 3 * num of regions
         for N in range(3):
             data = self.ngrams[N]
@@ -46,7 +49,6 @@ class PosterPredicter(EP):
                 voc = len(data[rid].keys())
                 const = math.log(tot + voc)
             
-                # scores[N][rid] = self.Pc[rid]
                 scores[N][rid] = 0
                 for gram in grams[N]:
                     if gram in data[rid].keys():
@@ -57,10 +59,12 @@ class PosterPredicter(EP):
 
         score = c1*scores[0] + c2*scores[1] + c3*scores[2]
 
-        # print(score)
         return score
     
-    def test(self, names):
+    def predict(self, names):
+
+        # predict ethnicity of a name
+
         # method :
         # 0 pre/suffix
         # 1 ngram bayes
@@ -80,15 +84,11 @@ class PosterPredicter(EP):
             else:
                 # print("not in database, using prepostffix")
                 if self.mode == 0 or self.mode == 2 or self.mode == 3:
-                    p = p + self.testPrePost(name)
+                    p = p + self.PrePost(name)
 
                 if self.mode == 1 or self.mode == 2 or self.mode == 3:
                 # print("not in database, using bayes")
-                    p = p + self.testBayes(name)
-                
-            # elif self.mode == 2:
-
-            #     pass
+                    p = p + self.Bayes(name)
 
         print(printNames[p.argmax()], end=' ')
         
@@ -101,6 +101,8 @@ class PosterPredicter(EP):
         return p.argmax()
 
     def Run(self):
+
+        # keep receiving names and do prediction
 
         self.readData()
         self.countNN()
@@ -120,12 +122,14 @@ class PosterPredicter(EP):
         testname = ""
         while testname != "stop":
             testname = input("Please enter a name (enter 'stop' to exit): ")
-            self.test(str.lower(testname))
+            self.predict(str.lower(testname))
         
         return
 
 
-    def Run_go_chess_test(self):
+    def Run_sports_player_test(self):
+
+        # run the test in our report on sports players
 
         self.readData()
         self.countNN()
@@ -154,8 +158,11 @@ class PosterPredicter(EP):
 
         
 if __name__ == '__main__':
-    
+
+    # run the demo
+    print("Initializing...")
     pp = PosterPredicter(_mode=3)
+    # mode should be combined mode (mode 3)
     pp.Run()
 
 
