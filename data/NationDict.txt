@@ -1,0 +1,441 @@
+AFG	Afghanistan
+ALB	Albania
+ALG	Algeria
+ASA	American Samoa
+AND	Andorra
+ANG	Angola
+AGU	Anguilla
+ANT	Antigua and Barbuda
+ARG	Argentina
+ARM	Armenia
+ARU	Aruba
+ANZ	Australasia
+AUS	Australia
+AUT	Austria
+AZE	Azerbaijan
+BRN	Bahrain
+BAN	Bangladesh
+BAR	Barbados
+BLR	Belarus
+BEL	Belgium
+BIZ	Belize
+BEN	Benin
+BER	Bermuda
+BHU	Bhutan
+BOH	Bohemia
+BOL	Bolivia
+BIH	Bosnia and Herzegovina
+BOT	Botswana
+BRA	Brazil
+IVB	British Virgin Islands
+BRU	Brunei Darussalam
+BUL	Bulgaria
+BUR	Burkina Faso
+BDI	Burundi
+CAM	Cambodia
+CMR	Cameroon
+CAN	Canada
+CPV	Cape Verde
+CAY	Cayman Islands
+CAF	Central African Republic
+CEA	Central America
+CHA	Chad
+CHI	Chile
+TPE	Chinese Taipei
+XMI	Christmas Island
+CKI	Cocos Islands
+COL	Colombia
+COM	Comoros
+CGO	Congo
+COK	Cook Islands
+CRC	Costa Rica
+CIV	Côte d'Ivoire
+CRT	Crete
+CRO	Croatia
+CUB	Cuba
+CUR	Curaçao
+CYP	Cyprus
+CZE	Czech Republic
+TCH	Czechoslovakia
+PRK	Democratic People's Republic of Korea
+COD	Democratic Republic of the Congo
+DEN	Denmark
+DJI	Djibouti
+DMA	Dominica
+DOM	Dominican Republic
+GDR	East Germany
+ECU	Ecuador
+EGY	Egypt
+ESA	El Salvador
+GEQ	Equatorial Guinea
+ERI	Eritrea
+EST	Estonia
+SWZ	Eswatini
+ETH	Ethiopia
+FLI	Falkland Islands
+FAR	Faroe Islands
+FSM	Federated States of Micronesia
+FIJ	Fiji
+FIN	Finland
+FRA	France
+FGU	French Guiana
+FPN	French Polynesia
+GAB	Gabon
+GEO	Georgia
+GER	Germany
+GHA	Ghana
+GIB	Gibraltar
+GBR	Great Britain
+GRE	Greece
+GRL	Greenland
+GRN	Grenada
+GDP	Guadeloupe
+GUM	Guam
+GUA	Guatemala
+GUE	Guernsey
+GUI	Guinea
+GBS	Guinea Bissau
+GUY	Guyana
+HAI	Haiti
+HON	Honduras
+HKG	Hong Kong, China
+HUN	Hungary
+ISL	Iceland
+IND	India
+IOA	Individual Olympic Athletes
+INA	Indonesia
+IRQ	Iraq
+IRL	Ireland
+IRI	Islamic Republic of Iran
+IOM	Isle of Man
+ISR	Israel
+ITA	Italy
+JAM	Jamaica
+JPN	Japan
+JER	Jersey
+JOR	Jordan
+KAZ	Kazakhstan
+KEN	Kenya
+KSA	Kingdom of Saudi Arabia
+KIR	Kiribati
+COR	Korea Team
+KOS	Kosovo
+KUW	Kuwait
+KGZ	Kyrgyzstan
+LAO	Lao People's Democratic Republic
+LAT	Latvia
+LBN	Lebanon
+LES	Lesotho
+LBR	Liberia
+LBA	Libya
+LIE	Liechtenstein
+LTU	Lithuania
+LUX	Luxembourg
+MAC	Macau
+MAD	Madagascar
+MAW	Malawi
+MAL	Malaya
+MAS	Malaysia
+MDV	Maldives
+MLI	Mali
+MLT	Malta
+MHL	Marshall Islands
+MQE	Martinique
+MTN	Mauritania
+MRI	Mauritius
+MYT	Mayotte
+MEX	Mexico
+MWI	Midway Islands
+MIX	Mixed team
+MON	Monaco
+MGL	Mongolia
+MNE	Montenegro
+MTS	Montserrat
+MAR	Morocco
+MOZ	Mozambique
+MYA	Myanmar
+NAM	Namibia
+NRU	Nauru
+NEP	Nepal
+NED	Netherlands
+AHO	Netherlands Antilles
+NCD	New Caledonia
+NZL	New Zealand
+NFL	Newfoundland
+NCA	Nicaragua
+NIG	Niger
+NGR	Nigeria
+NIU	Niue
+NFI	Norfolk Island
+NBO	North Borneo
+MKD	North Macedonia
+YAR	North Yemen
+NMI	Northern Mariana Islands
+NOR	Norway
+OAR	Olympic Athletes from Russia
+OMA	Oman
+PAK	Pakistan
+PLW	Palau
+PLE	Palestine
+PAN	Panama
+PNG	Papua New Guinea
+PAR	Paraguay
+CHN	People's Republic of China
+PER	Peru
+PHI	Philippines
+POL	Poland
+POR	Portugal
+PUR	Puerto Rico
+QAT	Qatar
+EOR	Refugee Olympic Team
+KOR	Republic of Korea
+MDA	Republic of Moldova
+RNN	Réunion
+RHO	Rhodesia
+ROU	Romania
+RUS	Russian Federation
+RWA	Rwanda
+SAA	Saar
+SKN	Saint Kitts and Nevis
+LCA	Saint Lucia
+VIN	Saint Vincent and the Grenadines
+BRT	Saint-Barthélemy
+MRT	Saint-Martin
+SAM	Samoa
+SMR	San Marino
+STP	São Tomé and Príncipe
+SEN	Senegal
+SRB	Serbia
+SCG	Serbia and Montenegro
+SEY	Seychelles
+SLE	Sierra Leone
+SGP	Singapore
+SMT	Sint Maarten
+SVK	Slovakia
+SLO	Slovenia
+SOL	Solomon Islands
+SOM	Somalia
+RSA	South Africa
+SSD	South Sudan
+VNM	South Vietnam
+YMD	South Yemen
+URS	Soviet Union
+ESP	Spain
+SRI	Sri Lanka
+HEL	St. Helena
+SPM	St. Pierre and Miquelon
+SUD	Sudan
+SUR	Suriname
+SVB	Svalbard
+SWE	Sweden
+SUI	Switzerland
+SYR	Syrian Arab Republic
+TJK	Tajikistan
+THA	Thailand
+BAH	The Bahamas
+GAM	The Gambia
+TLS	Timor-Leste
+TOG	Togo
+TKL	Tokelau
+TGA	Tonga
+TTO	Trinidad and Tobago
+TUN	Tunisia
+TUR	Turkey
+TKM	Turkmenistan
+TKS	Turks and Caicos Islands
+TUV	Tuvalu
+UGA	Uganda
+UKR	Ukraine
+EUN	Unified Team
+UAE	United Arab Emirates
+UAR	United Arab Republic
+TAN	United Republic of Tanzania
+USA	United States
+ISV	United States Virgin Islands
+UNK	Unknown
+URU	Uruguay
+UZB	Uzbekistan
+VAN	Vanuatu
+VAT	Vatican City
+VEN	Venezuela
+VIE	Vietnam
+WAF	Wallis and Futuna
+FRG	West Germany
+WIF	West Indies Federation
+YEM	Yemen
+YUG	Yugoslavia
+ZAM	Zambia
+ZIM	Zimbabwe
+AAI	Adai
+ADA	Adana
+ADR	Adramyttion
+AGR	Aigeira
+AIG	Aigion
+AIT	Aitolia
+AIZ	Aizanoi
+AKA	Akarnan
+AKR	Akragas
+ALX	Alexandria
+AMB	Ambrakia
+APP	Amphipolis
+AMP	Amphissa
+ANS	Andros
+ANM	Anemurium
+ATD	Anthedon
+ATK	Antikyra
+ATO	Antiochia on the Orontes
+ATS	Antissa
+APM	Apamea-Myrleia
+APH	Aphrodisias
+APL	Apollonia
+AGS	Argos
+AMN	Armenia
+APD	Aspendos
+ASO	Assos
+ATP	Astypalaia
+ATH	Athens
+ATI	Atiolia
+ATT	Attaleia
+ATR	Augusta Traiana
+BRG	Bargylia
+BRK	Barke
+BTN	Bithynia (Nikaia)
+BTP	Bithynia (Prousa)
+DLD	Daldis
+DEL	Delos
+DLP	Delphi
+DIP	Dipaia
+DYM	Dymai
+DYS	Dyspontion
+ELA	Elateia
+ELI	Elis
+EPE	Epeiros
+EPH	Ephesus
+EDM	Epidamnos
+EDR	Epidauros
+ERY	Erythrai
+GEL	Gela
+GOR	Gortyn
+HAL	Halicarnassus
+HER	Heraia
+HMN	Hermione
+HMP	Hermopolis
+HRP	Hierapolis
+HIM	Himera
+HYB	Hyblaia
+HYP	Hypaipa
+IAS	Iasos
+KMN	Kamarina
+KMR	Kamiros
+KPD	Kappadokia
+KAR	Karian
+KRS	Karystos
+KEL	Kelonai
+KER	Keramos
+KHA	Khalkis
+KHI	Khios
+KZM	Klazomenai
+KLT	Kleitor
+KLN	Kleonai
+KOL	Kolophon
+KTH	Korinth
+KKY	Korkyra
+SKS	Kos
+KRN	Krannon
+KRT	Kroton
+KYD	Kydonia
+KYM	Kyme
+KPS	Kyparissia
+KYP	Kypro
+KYR	Kyrene
+KYZ	Kyzikos
+LAK	Lakonia (Akrion)
+LDL	Laodikeia on the Lykos
+LAR	Larisa
+LEP	Lepreon
+LIN	Lindos
+MAK	Macedonia
+MNM	Magnesia on the Maiandros
+MAI	Mainalos
+MAN	Manteneia
+MRN	Maroneia
+MGP	Megalopolis
+MEG	Megara
+MEL	Melos
+MES	Messene
+MTH	Methydria
+MIL	Miletus
+MYL	Mylasa
+MYR	Myra
+MTL	Mytilene
+NKT	Naukratis
+NAX	Naxos
+NEA	Neapolis
+NYS	Nysa
+OIN	Oinoanda
+OPS	Opous
+ORS	Orestheia
+ORK	Orkhomenos
+OXY	Oxyrhynchos
+PRH	Parrhasia
+PAT	Patrai
+PEL	Pellene
+PEP	Peparethos
+PGM	Pergamon
+PES	Pessinous
+PET	Petra
+PHA	Pharsalos
+PGL	Phigaleia
+PLD	Philadelphia
+PHP	Philippoi
+PHN	Phoenicia
+PSA	Pisa
+POS	Poseidonia
+RHD	Rhodes
+ROM	Roma
+SAL	Salamis
+SMS	Samos
+SAR	Sardis
+SLT	Seleukeia on the Tigris
+SID	Sidon
+SIK	Sikyon
+SIN	Sinope
+SIR	Siracusa
+SKO	Skotoussa
+SMY	Smyrna
+SPA	Sparta
+STR	Stratonikeia
+STY	Stymphalia
+SYB	Sybaris
+SRA	Syria (Antocheia)
+TNG	Tanagra
+TAR	Taranto
+TRS	Tarsos
+TMN	Tauromenion
+TEG	Tegea
+TEL	Telmessos
+TND	Tenedos
+TNS	Tenos
+TER	Terina
+THS	Thasos
+THB	Thebes
+TPH	Thelphoussa
+THP	Thespiai
+THL	Thessaly
+THR	Thourioi
+THY	Thyateira
+TIR	Tiryns
+TLO	Tlos
+TRA	Tralles
+TRT	Tritaia
+TRZ	Troizen
+TRO	Troy
+TYA	Tyana
+ARK	Unknown city in Arkadia
+ASI	Unknown city in Asia
+BOE	Unknown city in Boeotia
+KRE	Unknown city in Crete
+EGP	Unknown city in Egypt
+LOK	Unknown city in Lokria
+XAN	Xanthos
+ZAK	Zakynthos

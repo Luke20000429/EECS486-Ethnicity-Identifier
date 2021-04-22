@@ -12,7 +12,6 @@ In this project, we classified 13 types of **ethnicity** according to cultures a
 ├── README.md
 ├── archive
 ├── data
-├── demonyms.csv 
 ├── Analysis.ipynb
 ├── gatherData.ipynb
 ├── olympic_scrapper.py
